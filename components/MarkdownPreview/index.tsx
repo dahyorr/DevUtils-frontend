@@ -5,8 +5,6 @@ import { useEffect, useRef, useState } from "react"
 import { OnChange, OnMount, OnValidate } from '@monaco-editor/react'
 import { editor } from 'monaco-editor'
 import { useTheme } from '@mui/material/styles'
-import { remark } from 'remark';
-import html from 'remark-html';
 
 
 interface Props { }
@@ -35,6 +33,8 @@ const MarkdownPreview = ({ }: Props) => {
   // con
 
   const convertMarkdownToHtml = async (markdown: string) => {
+    const { remark } = await import('remark')
+    const { default: html } = await import('remark-html')
     const result = await remark().use(html).process(markdown)
     setHtmlContent(result.toString())
   }
