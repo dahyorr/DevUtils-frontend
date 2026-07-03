@@ -4,7 +4,7 @@ import JsonEditor from "@/components/JsonToYaml/JsonEditor";
 import YamlPreview from "@/components/JsonToYaml/YamlPreview";
 import { Box } from '@mui/material';
 import { OnChange, OnMount, OnValidate, loader } from '@monaco-editor/react'
-import yaml from 'js-yaml'
+import { dump } from 'js-yaml'
 import { editor } from 'monaco-editor'
 import { monacoConfig } from '@/helpers/monacoLoaderConfig'
 import { useTheme } from '@mui/material/styles';
@@ -42,7 +42,7 @@ const JsonToYaml = () => {
     if (editorContent && editorErrors.length < 1) {
       try {
         const parsedJson = JSON.parse(editorContent)
-        const converted = yaml.dump(parsedJson)
+        const converted = dump(parsedJson)
         previewRef.current?.getModel()?.setValue(converted)
       }
       catch (err) {
