@@ -1,5 +1,4 @@
-import PageHeader from 'components/PageHeader'
-import HashPreview from '@/components/FileHashGenerator/HashPreview'
+import PageHeader from '@/components/PageHeader'
 import { Box, Typography } from '@mui/material'
 import { PropsWithChildren } from 'react'
 

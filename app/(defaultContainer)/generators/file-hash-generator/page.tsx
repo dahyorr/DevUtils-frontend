@@ -1,4 +1,4 @@
-import FileForm from 'components/FileHashGenerator/FileForm'
+import FileForm from '@/components/FileHashGenerator/FileForm'
 import React, { Suspense } from 'react'
 
 const FileHashGeneratorPage = () => {
