@@ -9,10 +9,10 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import Alert from '@mui/material/Alert';
 import Spinner from '../loaders/Spinner';
-import { getHashingResult } from 'api/fileHash';
-import { useLoader } from 'hooks';
+import { getHashingResult } from '@/api/fileHash';
+import { useLoader } from '@/hooks';
 import { HashData } from '@/types';
-import { useSocket } from 'hooks/useSocket';
+import { useSocket } from '@/hooks/useSocket';
 import { useSearchParams } from 'next/navigation';
 
 const Preview = styled(Paper)({
