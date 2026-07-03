@@ -5,7 +5,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import ErrorIcon from '@mui/icons-material/Error';
 import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
-import {Accept, useDropzone} from 'react-dropzone'
+import {Accept, DropzoneOptions, useDropzone} from 'react-dropzone'
 import { convertByteSize } from '@/utils';
 import IconButton from '@mui/material/IconButton'
 
@@ -41,13 +41,16 @@ const FilePicker: React.FC<{
         onChange(acceptedFiles)
     }, [onChange])
 
+    // Cast is type-only: DropzoneOptions' shipped types predate React 19's
+    // updated HTMLProps event-handler typing and can be removed once
+    // react-dropzone ships React 19-compatible types.
     const {getRootProps, getInputProps, isDragActive, open, fileRejections} = useDropzone({
         onDropAccepted,
         maxFiles: 1,
         maxSize: sizeLimit,
         multiple: false,
         accept
-    })
+    } as unknown as DropzoneOptions)
 
     const fileErrors = fileRejections.length > 0 && fileRejections[0].errors || []
 
@@ -114,8 +117,8 @@ const FilePicker: React.FC<{
     }}
     elevation={12}
     >
-    <UploadDropzone 
-        {...getRootProps()} 
+    <UploadDropzone
+        {...getRootProps() as object}
         onClick={open}
         sx={{
             cursor: disableDropzone || selectedFiles.length > 0
@@ -124,7 +127,7 @@ const FilePicker: React.FC<{
                 backgroundImage: 'none',
             }}    
     >
-        <input {...getInputProps()} />
+        <input {...getInputProps() as object} />
         {fileErrors.length > 0
         ? fileErrorContent()
         :selectedFiles.length > 0
