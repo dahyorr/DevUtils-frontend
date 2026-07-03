@@ -2,7 +2,6 @@ import { Box, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { decodeJwt, decodeProtectedHeader, jwtVerify } from 'jose'
 import JWTSettings, { JWTDecodeSettings } from './JWTSettings'
-import { JOSEError, JWSSignatureVerificationFailed } from 'jose/dist/types/util/errors'
 import { enqueueSnackbar } from 'notistack'
 
 type Props = {
